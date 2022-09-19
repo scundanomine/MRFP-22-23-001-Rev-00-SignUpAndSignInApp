@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        * {
+            margin: 3px;
+            padding: 3px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Signup to Scundanomine</h1>
+    </div>
+    <form action="">
+        <label for="email">Email</label>
+        <input type="email" name="" id="email" placeholder="Email">
+        <br>
+        <label for="name">Name</label>
+        <input type="text" name="" id="name" placeholder="Name">
+        <br>
+        <label for="password">Password</label>
+        <input type="password" name="" id="password" placeholder="Password">
+        <br>
+        <label for="repassword">Re-enter Password</label>
+        <input type="password" name="" id="repassword" placeholder="Re-enter Password">
+        <br>
+        <button id="btn">SignUp</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js"
+        integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+    <script>
+        console.log("Fetch API works!!!!!!!!!!!!");
+        $('#btn').click(function (e) {
+            e.preventDefault();
+            console.log("Email value is " + $("#email").val());
+            console.log("Name value is " + $("#name").val());
+            console.log("Password value is " + $("#password").val());
+            console.log("Re-eneter Password value is " + $("#repassword").val());
+
+            let email = $("#email").val();
+            let name = $("#name").val();
+            let password = $("#password").val();
+            let repassword = $("#repassword").val();
+
+            fetch("http://localhost:3000/signup", { method: "POST", headers: { 'Content-Type': "application/json" }, body: JSON.stringify({ email, name, password, repassword }) }).then(function (response) {
+                return response.json();
+            }).then(function (data) {
+                console.log(data);
+            });
+
+        });
+    </script>
+</body>
+
+</html>
