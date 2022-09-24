@@ -1,12 +1,26 @@
 console.log("Auth works")
+console.log("It works!!!!!!");
 const express = require('express')
 const app = express()
-const getConnection = require("./controller/databaseConnection");
-const userX = require("./controller/userCollection");
 app.use(express.json())
 
+const createConnection = require("./databaseConnection");
+
+const userX = require('./userCollection');
+
 // Connection to database
-getConnection;
+createConnection.getConnection
+
+//Model population
+
+// for(let i=0; i<5;i++){
+//     userX.create({
+//         email: "jeeshanali0"+i+"@gmail.com",
+//         name: "Jeeshan"+i,
+//         password:"protected"+i,
+//         repassword:"protected"+i
+//     });
+// }
 
 //For Mini App
 const authRouter = express.Router();
@@ -23,7 +37,7 @@ let userData = [];
 
 function getSignup(req, res) {
     console.log("welcome!")
-    res.sendFile("./view/signup.html", {root:__dirname})
+    res.sendFile("./signup.html", {root:__dirname})
 }
 
 function postUser(req, res) {
@@ -40,10 +54,17 @@ function postUser(req, res) {
     });
 }
 
-function patchUser(req, res) {
+async function patchUser(req, res) {
+    console.log(req.body);
+    userData = req.body;
+    await userX.updateMany({ name: "Zeeshan Ali" }, { password: userData.password });
+    res.send('Data has been updated');
 }
 
-function deleteUser(req, res) {
+async function deleteUser(req, res) {
+    console.log("Yes, data has been deleted")
+    await userX.deleteOne({name:"Jeeshan4"})
+    res.send('data has been deleted');
 }
 
 
@@ -64,4 +85,5 @@ app.listen(3000, function jee() {
     console.log("The server has been startd");
 })
 
-//Hi have done it
+//Hi have done it7
+1

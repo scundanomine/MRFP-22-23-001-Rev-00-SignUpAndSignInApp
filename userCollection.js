@@ -10,6 +10,6 @@ const usersSchema = new Schema({
     repassword:String
 })
 
-const userX = mongoose.model("usersData", usersSchema)
+const userX = mongoose.model("usersData2", usersSchema)
 
 module.exports = userX;
